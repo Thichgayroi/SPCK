@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1059</width>
+    <height>722</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:#eef2f7</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QWidget" name="widget_10" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:#d8e0ea;
+border-radius:24px;</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QWidget" name="widget_3" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QWidget" name="widget_4" native="true">
+               <property name="maximumSize">
+                <size>
+                 <width>84</width>
+                 <height>84</height>
+                </size>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>../IMG/app.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbl_name">
+               <property name="font">
+                <font>
+                 <family>JetBrains Mono NL</family>
+                 <pointsize>16</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>AppNest</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_5" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color:#EEF3FB;
+border-radius:18px;
+</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QPushButton" name="btn_LYA">
+               <property name="font">
+                <font>
+                 <family>JetBrains Mono</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: transparent;
+    color: #1a1a1a;
+    border-radius: 10px;
+    padding: 8px 16px;
+}
+
+QPushButton:hover {
+    background-color: #f5f5f5;
+    border: 1.5px solid #c0c0c0;
+}
+
+QPushButton:pressed {
+    background-color: #e0e0e0;
+    border: 1.5px solid #a0a0a0;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>List your app</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_12" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>JetBrains Mono</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color:#EEF3FB;
+border-radius:18px;
+</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QPushButton" name="btn_accounts">
+               <property name="font">
+                <font>
+                 <family>JetBrains Mono</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: transparent;
+    color: #1a1a1a;
+    border-radius: 10px;
+    padding: 8px 16px;
+}
+
+QPushButton:hover {
+    background-color: #f5f5f5;
+    border: 1.5px solid #c0c0c0;
+}
+
+QPushButton:pressed {
+    background-color: #e0e0e0;
+    border: 1.5px solid #a0a0a0;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>Accounts</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_11" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color:#EEF3FB;
+border-radius:18px;
+</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QPushButton" name="btn_settings">
+               <property name="font">
+                <font>
+                 <family>JetBrains Mono</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: transparent;
+    color: #1a1a1a;
+    border-radius: 10px;
+    padding: 8px 16px;
+}
+
+QPushButton:hover {
+    background-color: #f5f5f5;
+    border: 1.5px solid #c0c0c0;
+}
+
+QPushButton:pressed {
+    background-color: #e0e0e0;
+    border: 1.5px solid #a0a0a0;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>Settings</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_6" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color:#EEF3FB;
+border-radius:18px;
+</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QPushButton" name="btn_ATA">
+               <property name="font">
+                <font>
+                 <family>JetBrains Mono</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: transparent;
+    color: #1a1a1a;
+    border-radius: 10px;
+    padding: 8px 16px;
+}
+
+QPushButton:hover {
+    background-color: #f5f5f5;
+    border: 1.5px solid #c0c0c0;
+}
+
+QPushButton:pressed {
+    background-color: #e0e0e0;
+    border: 1.5px solid #a0a0a0;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>About this app</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_13" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3"/>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_14" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QWidget" name="widget_7" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>125</height>
+             </size>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QWidget" name="widget_9" native="true">
+               <property name="maximumSize">
+                <size>
+                 <width>700</width>
+                 <height>75</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+border-radius: 16px;</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="maximumSize">
+                   <size>
+                    <width>36</width>
+                    <height>36</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>../IMG/search.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit">
+                  <property name="maximumSize">
+                   <size>
+                    <width>500</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>JetBrains Mono</family>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">/* Đặt objectName cho QLineEdit là &quot;searchBar&quot; */
+QLineEdit {
+    /* nền nhẹ nhàng */
+    background-color: white;
+    /* bo tròn full height (nếu height=32px thì radius=16px) */
+    border-radius: 16px;
+	padding: 3px 6px 3px 6px;
+}
+
+/* Placeholder màu xám nhạt */
+QLineEdit#searchBar::placeholder {
+    color: #A0A0A0;
+}
+
+/* Khi focus thì nền trắng sáng hơn, có viền nhẹ */
+QLineEdit#searchBar:focus {
+    background-color: #FFFFFF;
+    border: 1px solid #D0D0D0;
+}
+
+/* Nếu cần disabled state */
+QLineEdit#searchBar:disabled {
+    background-color: #ECECEC;
+    color: #A0A0A0;
+}
+</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Search</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_8" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

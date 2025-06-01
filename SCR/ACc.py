@@ -7,9 +7,11 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
         self.setWindowTitle("Home")
         self.btn_ATA.clicked.connect(self.vao_ATA)
         self.btn_LYA.clicked.connect(self.vao_LYA)
-
+        self.btn_settings.clicked.connect(self.vao_SETTING)
+        
         self.ataWindow = None
         self.lyaWindow = None
+        self.settingWindow = None
 
     def vao_ATA(self):
         from ATa import Ata
@@ -23,4 +25,11 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
         if(self.lyaWindow) == None:
             self.lyaWindow = Lya()
         self.lyaWindow.show()
+        self.hide()
+
+    def vao_SETTING(self):
+        from Settings import Setting
+        if(self.settingWindow) == None:
+            self.settingWindow = Setting()
+        self.settingWindow.show()
         self.hide()

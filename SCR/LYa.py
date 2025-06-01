@@ -12,16 +12,21 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
         uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/LYA.ui", self) #Load giao diện từ file
         self.setWindowTitle("Home")
         self.add_button.clicked.connect(self.add_app)
-
         self.delete_button.clicked.connect(self.delete_app)
-
         self.open_button.clicked.connect(self.open_app)
-
         self.group_button.clicked.connect(self.create_group)
-
         self.list_widget.model().rowsMoved.connect(self.update_indentation)
-
         self.current_group_index = None
+
+        self.btn_ATA.clicked.connect(self.vao_ATA)
+        self.btn_accounts.clicked.connect(self.vao_ACC)
+        self.btn_settings.clicked.connect(self.vao_SETTING)
+
+        self.ataWindow = None
+        self.accWindow = None
+        self.settingWindow = None
+
+
 
     def add_app(self):
         file_dialog = QFileDialog()
@@ -101,9 +106,23 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                 else:
                     item.setText(text.strip())  # không thụt
 
+    def vao_ATA(self):
+        from ATa import Ata
+        if(self.ataWindow) == None:
+            self.ataWindow = Ata()
+        self.ataWindow.show()
+        self.hide()
 
-# if __name__ == "__main__":
-#     app = QApplication(sys.argv)
-#     window = AppManager()
-#     window.show()
-#     sys.exit(app.exec_())
+    def vao_ACC(self):
+        from ACc import Acc
+        if(self.accWindow) == None:
+            self.accWindow = Acc()
+        self.accWindow.show()
+        self.hide()
+
+    def vao_SETTING(self):
+        from Settings import Setting
+        if(self.settingWindow) == None:
+            self.settingWindow = Setting()
+        self.settingWindow.show()
+        self.hide()

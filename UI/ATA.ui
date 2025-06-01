@@ -102,7 +102,7 @@ border-radius:18px;
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="btn_LYA">
                <property name="font">
                 <font>
                  <family>JetBrains Mono</family>
@@ -157,7 +157,7 @@ border-radius:18px;
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="btn_accounts">
                <property name="font">
                 <font>
                  <family>JetBrains Mono</family>
@@ -206,7 +206,7 @@ border-radius:18px;
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="btn_settings">
                <property name="font">
                 <font>
                  <family>JetBrains Mono</family>

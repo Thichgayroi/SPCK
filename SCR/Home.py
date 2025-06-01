@@ -8,11 +8,12 @@ class Home(QMainWindow): #Kế thừa các thuộc tính và phương thức t�
         self.btn_ATA.clicked.connect(self.vao_ATA)
         self.btn_LYA.clicked.connect(self.vao_LYA)
         self.btn_accounts.clicked.connect(self.vao_ACC)
-        # self.btn_settings.clicked.connect(self.vao_SETTING)
+        self.btn_settings.clicked.connect(self.vao_SETTING)
+
         self.ataWindow = None
         self.lyaWindow = None
         self.accWindow = None
-        # self.settingWindow = None
+        self.settingWindow = None
         
     def vao_ATA(self):
         from ATa import Ata
@@ -35,9 +36,9 @@ class Home(QMainWindow): #Kế thừa các thuộc tính và phương thức t�
         self.accWindow.show()
         self.hide()
     
-    # def vao_SETTING(self):
-    #     from ATa import Ata
-    #     if(self.ataWindow) == None:
-    #         self.ataWindow = Ata()
-    #     self.ataWindow.show()
-    #     self.hide()
+    def vao_SETTING(self):
+        from Settings import Setting
+        if(self.settingWindow) == None:
+            self.settingWindow = Setting()
+        self.settingWindow.show()
+        self.hide()

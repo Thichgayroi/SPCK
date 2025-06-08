@@ -1,110 +1,410 @@
 import json
-from PyQt5.QtWidgets import QMainWindow, QMessageBox,QVBoxLayout  # Import từ QtWidgets
-from PyQt5 import uic #uic để tạo giao diện cửa sổ từ file thiết kế (.ui)
+from PyQt5.QtWidgets import QMainWindow, QMessageBox,QVBoxLayout,QWidget,QLabel,QApplication
+from PyQt5 import uic
+from PyQt5.QtCore import Qt, QTimer
 from qtwidgets import AnimatedToggle
-class Setting(QMainWindow): #Kế thừa các thuộc tính và phương thức từ QMainWindow
-    def __init__(self): #Hàm init tự động chạy khi khởi tạo đối tượng
-        super().__init__() #super giúp gọi hàm init của QMainWindow
-        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/Settings.ui", self) #Load giao diện từ file
+
+class Setting(QMainWindow):
+    def __init__(self, username=None):
+        super().__init__()
+        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/Settings - Copy.ui", self)
         self.setWindowTitle("Home")
+        self.username = username
         self.btn_ATA.clicked.connect(self.vao_ATA)
         self.btn_LYA.clicked.connect(self.vao_LYA)
         self.btn_accounts.clicked.connect(self.vao_ACC)
+        self.btn_apply.clicked.connect(self.save_settings)
 
         self.ataWindow = None
         self.lyaWindow = None
         self.accWindow = None
 
-        toggle1 = AnimatedToggle(checked_color="#536DFE", pulse_checked_color="#C5CAE9")
-        toggle1.toggled.connect(self.toggle_dark_light_mode)  # Gắn sự kiện
+        darkmode, notification = self.load_user_settings(self.username)
+
+        self.enable_toast = notification
+
+        self.toggle1 = AnimatedToggle(checked_color="#536DFE", pulse_checked_color="#C5CAE9")
+        self.toggle1.setChecked(darkmode)
+        self.toggle1.toggled.connect(self.toggle_dark_light_mode)
         layout1 = QVBoxLayout()
-        layout1.addWidget(toggle1)
+        layout1.addWidget(self.toggle1)
         self.frame1.setLayout(layout1)
 
-        toggle2 = AnimatedToggle(checked_color="#536DFE", pulse_checked_color="#C5CAE9")
-        toggle2.toggled.connect(self.toggle_dark_light_mode)  # Gắn sự kiện
+        self.toggle2 = AnimatedToggle(checked_color="#536DFE", pulse_checked_color="#C5CAE9")
+        self.toggle2.setChecked(notification)
+        self.toggle2.toggled.connect(self.toggle_notice)
         layout2 = QVBoxLayout()
-        layout2.addWidget(toggle2)
+        layout2.addWidget(self.toggle2)
         self.frame2.setLayout(layout2)
+
+        # Áp dụng darkmode ngay khi vào
+        self.toggle_dark_light_mode(darkmode)
+
+    def load_user_settings(self, username):
+        with open("d:/WorkSpace/Python/PTI06/SPK/account.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+        for acc in data["accounts"]:
+            if acc["username"] == username:
+                return acc.get("darkmode", False), acc.get("notification", True)
+        return False, True  # Mặc định nếu không tìm thấy
+
     def vao_ATA(self):
         from ATa import Ata
         if(self.ataWindow) == None:
-            self.ataWindow = Ata()
+            self.ataWindow = Ata(self.username)
         self.ataWindow.show()
         self.hide()
 
     def vao_LYA(self):
         from LYa import Lya
         if(self.lyaWindow) == None:
-            self.lyaWindow = Lya()
+            self.lyaWindow = Lya(self.username)
         self.lyaWindow.show()
         self.hide()
     
     def vao_ACC(self):
         from ACc import Acc
         if(self.accWindow) == None:
-            self.accWindow = Acc()
+            self.accWindow = Acc(self.username)
         self.accWindow.show()
         self.hide()
 
-    def toggle_dark_light_mode(self, checked):
-        if checked:
-            self.setStyleSheet("""
-                QMainWindow {
-                    background-color: #3B3F4E;
-                    color: white;
-                }
-                QPushButton {
-                    padding: 2px 2px;
-                    border: 1px solid #555;
-                }
-                
-                QLabel{
-                    color:white;            
-                }
-            """)
-
+    def toggle_notice(self, checked=False):
+        self.enable_toast = checked
+        if not checked:
+            print("(-)")
         else:
+            self.toast = SimpleToast("Notifications: ON", duration=2000)
+
+    def toggle_dark_light_mode(self, checked):
+        if self.enable_toast:
+            if checked:
+                self.toast = SimpleToast("Dark Mode: ON", duration=2000)
+            else:
+                self.toast = SimpleToast("Dark Mode: OFF", duration=2000)
+
+        if checked:
+            self.widget_2.setStyleSheet("""
+                background-color: #2b2b2b;
+                color: white;
+                border-radius: 24px;
+                """)
+            self.widget_7.setStyleSheet("""
+                background-color: #2b2b2b;
+                color: white;
+                border-radius: 12px;
+                """)
+            self.widget_5.setStyleSheet("""
+                background-color: #3a3a3a;
+                border-radius: 12px;
+                """)
+            self.widget_12.setStyleSheet("""
+                background-color: #3a3a3a;
+                border-radius: 12px;
+                """)
+            self.widget_11.setStyleSheet("""
+                background-color: #3a3a3a;
+                border-radius: 12px;
+                """)
+            self.widget_6.setStyleSheet("""
+                background-color: #3a3a3a;
+                border-radius: 12px;
+                """)
+            self.btn_LYA.setStyleSheet("""
+                QPushButton {
+                    background-color: transparent;
+                    color: white;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
+
+                QPushButton:hover {
+                    background-color: #505050;
+                    border: 1.5px solid #c0c0c0;
+                }
+
+                QPushButton:pressed {
+                    background-color: #2f2f2f;
+                    border: 1.5px solid #a0a0a0;
+                }
+
+                """)
+            self.btn_accounts.setStyleSheet("""
+                QPushButton {
+                    background-color: transparent;
+                    color: white;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
+
+                QPushButton:hover {
+                    background-color: #505050;
+                    border: 1.5px solid #c0c0c0;
+                }
+
+                QPushButton:pressed {
+                    background-color: #2f2f2f;
+                    border: 1.5px solid #a0a0a0;
+                }
+
+                """)
+            self.btn_settings.setStyleSheet("""
+                QPushButton {
+                    background-color: #505050;
+                    color: white;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
+                """)
+            self.btn_ATA.setStyleSheet("""
+                QPushButton {
+                    background-color: transparent;
+                    color: white;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
+
+                QPushButton:hover {
+                    background-color: #505050;
+                    border: 1.5px solid #c0c0c0;
+                }
+
+                QPushButton:pressed {
+                    background-color: #2f2f2f;
+                    border: 1.5px solid #a0a0a0;
+                }
+
+                """)
             self.setStyleSheet("""
                 QMainWindow {
-                    background-color: white;
-                    color: black;
+                    background-color: #1e1e1e;
+                    color: #e0e0e0;
                 }
-                QLineEdit, QPushButton {
-                    border: 1px solid #ccc;
+
+
+                QLabel {
+                    color: #cccccc;
                 }
+
+
+                QComboBox {
+                    background-color: #2c2c2c;
+                    color: #e0e0e0;
+                    border: 1px solid #555;
+                    padding: 4px;
+                }
+
+                QComboBox QAbstractItemView {
+                    background-color: #2c2c2c;
+                    color: #e0e0e0;
+                    selection-background-color: #444;
+                }
+
             """)
-        # if hasattr(self, "current_user"):  # Đảm bảo có user hiện tại
-        #     new_settings = {
-        #         "dark_mode": checked,
-        #         # Nếu bạn có thêm toggle hoặc combo box thì thêm vào đây
-        #         "notifications": True,  # giả sử luôn bật
-        #         "region": "VN"  # giả sử mặc định VN
-        #     }
-        #     self.cap_nhat_settings(self.current_user, new_settings)
-    
-    # def cap_nhat_settings(self, username, new_settings):
-    #     with open("account.json", "r") as file:
-    #         data = json.load(file)
+        else:
+            self.widget_2.setStyleSheet("""
+                background-color: #d8e0ea;
+                color: black;
+                border-radius: 24px;
+                """)
+            self.widget_7.setStyleSheet("""
+                background-color: #DCEEFF;
+                color: black;
+                border-radius: 12px;
+                """)
+            self.widget_5.setStyleSheet("""
+                background-color: #EEF3FB;
+                border-radius: 18px;
+                """)
+            self.widget_12.setStyleSheet("""
+                background-color: #EEF3FB;
+                border-radius: 18px;
+                """)
+            self.widget_11.setStyleSheet("""
+                background-color: #EEF3FB;
+                border-radius: 18px;
+                """)
+            self.widget_6.setStyleSheet("""
+                background-color: #EEF3FB;
+                border-radius: 18px;
+                """)
+            self.btn_LYA.setStyleSheet("""
+                QPushButton {
+                    background-color: transparent;
+                    color: #1a1a1a;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
 
-    #     for account in data["accounts"]:
-    #         if account["username"] == username:
-    #             account["settings"] = new_settings
-    #             break
+                QPushButton:hover {
+                    background-color: #f5f5f5;
+                    border: 1.5px solid #c0c0c0;
+                }
 
-    #     with open("account.json", "w") as file:
-    #         json.dump(data, file, indent=4)
+                QPushButton:pressed {
+                    background-color: #e0e0e0;
+                    border: 1.5px solid #a0a0a0;
+                }
+                """)
+            self.btn_accounts.setStyleSheet("""
+                QPushButton {
+                    background-color: transparent;
+                    color: #1a1a1a;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
+
+                QPushButton:hover {
+                    background-color: #f5f5f5;
+                    border: 1.5px solid #c0c0c0;
+                }
+
+                QPushButton:pressed {
+                    background-color: #e0e0e0;
+                    border: 1.5px solid #a0a0a0;
+                }
+                """)
+            self.btn_settings.setStyleSheet("""
+                QPushButton {
+                    background-color: #f5f5f5;
+                    color: #1a1a1a;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                    border: 1.5px solid #c0c0c0;
+                }
 
 
-    # def tai_settings(self, username):
-    #     with open("account.json", "r") as file:
-    #         data = json.load(file)
+                """)
+            self.btn_ATA.setStyleSheet("""
+                QPushButton {
+                    background-color: transparent;
+                    color: #1a1a1a;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
 
-    #     for account in data["accounts"]:
-    #         if account["username"] == username:
-    #             return account.get("settings", {})
-    #     return {}
-    
+                QPushButton:hover {
+                    background-color: #f5f5f5;
+                    border: 1.5px solid #c0c0c0;
+                }
 
+                QPushButton:pressed {
+                    background-color: #e0e0e0;
+                    border: 1.5px solid #a0a0a0;
+                }
+                """)
+            self.setStyleSheet("""
+
+                QLabel {
+                    color: #222222;
+                }
+
+                QPushButton {
+                    background-color: #f5f5f5;
+                    color: #222222;
+                    padding: 6px 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                }
+
+                QPushButton:hover {
+                    background-color: #e0e0e0;
+                }
+
+                QComboBox {
+                    background-color: #ffffff;
+                    color: #222222;
+                    border: 1px solid #ccc;
+                    padding: 4px;
+                }
+
+                QComboBox QAbstractItemView {
+                    background-color: #ffffff;
+                    color: #222222;
+                    selection-background-color: #ddd;
+                }
+
+                QLineEdit {
+                    background-color: #ffffff;
+                    color: #222222;
+                    border: 1px solid #ccc;
+                    padding: 4px;
+                }
+
+                QCheckBox, QRadioButton {
+                    color: #222222;
+                }
+
+                QGroupBox {
+                    border: 1px solid #ccc;
+                    margin-top: 10px;
+                }
+                #appTitle {
+                    color: #3b3b3b;
+                    font-weight: bold;
+                }
+
+                #settingsTitle {
+                    color: #222;
+                    font-size: 22px;
+                }
+
+            """)
+
+
+            # Thêm logic để tắt thông báo
+
+    def save_settings(self):
+        darkmode = self.toggle1.isChecked()
+        notification = self.toggle2.isChecked()
+        username = self.username
+
+        if not username:
+            QMessageBox.warning(self, "Lỗi", "Không tìm thấy tài khoản.")
+            return
+        with open("d:/WorkSpace/Python/PTI06/SPK/account.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        found = False
+        for acc in data["accounts"]:
+            if acc["username"] == username:
+                acc["darkmode"] = darkmode
+                acc["notification"] = notification
+                found = True
+                break
+
+        if not found:
+            QMessageBox.warning(self, "Lỗi", "Không tìm thấy tài khoản trong dữ liệu.")
+            return
+        
+        if(self.btn_apply):
+            with open("d:/WorkSpace/Python/PTI06/SPK/account.json", "w", encoding="utf-8") as file:
+                json.dump(data, file, indent=4, ensure_ascii=False)
+        QMessageBox.information(self, "Thành công", "Đã lưu cài đặt thành công!")
+
+class SimpleToast(QWidget):
+    def __init__(self, message, duration=4000):
+        super().__init__()
+        self.setWindowFlags(Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setStyleSheet("""
+            QLabel {
+                background-color: #333;
+                color: white;
+                padding: 12px;
+                border-radius: 8px;
+                font-size: 10pt;
+            }
+        """)
+        label = QLabel(message, self)
+        label.adjustSize()
+        self.resize(label.width(), label.height())
+
+        screen = QApplication.primaryScreen().availableGeometry()
+        x = screen.width() - self.width() - 50
+        y = screen.height() - self.height() - 50
+        self.move(x, y)
+        self.show()
+        QTimer.singleShot(duration, self.close)
 
 

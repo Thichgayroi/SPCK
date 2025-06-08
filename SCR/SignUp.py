@@ -19,12 +19,6 @@ class SignUp(QMainWindow): #Kế thừa các thuộc tính và phương thức t
         self.show_password_btn.clicked.connect(self.toggle_password_visibility)
         self.show_password_btn2.clicked.connect(self.toggle_password_visibility)
 
-        toggle = AnimatedToggle(checked_color="#536DFE", pulse_checked_color="#C5CAE9")
-        toggle.toggled.connect(self.toggle_dark_light_mode)  # Gắn sự kiện
-        layout = QVBoxLayout()
-        layout.addWidget(toggle)
-
-        self.frame.setLayout(layout)
 
     def xu_ly_dang_ky(self):
         txtUser = self.txtUsername.text().strip()
@@ -42,7 +36,13 @@ class SignUp(QMainWindow): #Kế thừa các thuộc tính và phương thức t
                 self.thongBao("Thông báo", "Tài khoản đã tồn tại")
                 return
             
-        data["accounts"].append(dict(username = txtUser, password = txtPass))
+        data["accounts"].append(dict(
+            username = txtUser,
+            password = txtPass,
+            darkmode = False,
+            notification = True,
+            ))
+        
         with open("account.json", "w") as file:
             json.dump(data, file, indent=4)
             self.thongBao("Thông báo", "Đăng ký tài khoản thành công")
@@ -83,30 +83,3 @@ class SignUp(QMainWindow): #Kế thừa các thuộc tính và phương thức t
             self.show_password_btn.setIcon(QIcon("D:/WorkSpace/Python/PTI06/SPK/IMG/eye-closed.png"))
             self.show_password_btn2.setIcon(QIcon("D:/WorkSpace/Python/PTI06/SPK/IMG/eye-closed.png"))
     
-    def toggle_dark_light_mode(self, checked):
-        if checked:
-            self.setStyleSheet("""
-                QMainWindow {
-                    background-color: #3B3F4E;
-                    color: white;
-                }
-                QPushButton {
-                    padding: 2px 2px;
-                    border: 1px solid #555;
-                }
-                
-                QLabel{
-                    color:white;            
-                }
-            """)
-
-        else:
-            self.setStyleSheet("""
-                QMainWindow {
-                    background-color: white;
-                    color: black;
-                }
-                QLineEdit, QPushButton {
-                    border: 1px solid #ccc;
-                }
-            """)

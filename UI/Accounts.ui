@@ -401,7 +401,7 @@ border-radius:12px;</string>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_12">
                    <item>
-                    <widget class="QPushButton" name="pushButton_6">
+                    <widget class="QPushButton" name="btn_logout">
                      <property name="maximumSize">
                       <size>
                        <width>100</width>
@@ -478,7 +478,7 @@ QPushButton:pressed {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="lineEdit">
+                    <widget class="QLineEdit" name="cant_change">
                      <property name="maximumSize">
                       <size>
                        <width>250</width>
@@ -520,7 +520,7 @@ QLineEdit:focus {
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_7">
                    <item>
-                    <widget class="QPushButton" name="pushButton_5">
+                    <widget class="QPushButton" name="btn_change_pass">
                      <property name="maximumSize">
                       <size>
                        <width>160</width>
@@ -564,7 +564,7 @@ QPushButton:pressed {
                  <widget class="QWidget" name="widget_22" native="true">
                   <layout class="QHBoxLayout" name="horizontalLayout_13">
                    <item>
-                    <widget class="QPushButton" name="pushButton_7">
+                    <widget class="QPushButton" name="btn_del_acc">
                      <property name="maximumSize">
                       <size>
                        <width>250</width>
@@ -621,7 +621,7 @@ QPushButton:pressed {
                     <widget class="QWidget" name="widget_25" native="true"/>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton_8">
+                    <widget class="QPushButton" name="btn_apply">
                      <property name="font">
                       <font>
                        <family>JetBrains Mono</family>

@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QMainWindow,QApplication, QWidget, QLabel,QVBoxLayou
 from PyQt5 import uic
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt, QTimer
-from qtwidgets import AnimatedToggle
 
 
 class Login(QMainWindow):
@@ -13,20 +12,14 @@ class Login(QMainWindow):
         self.setWindowTitle("Login")
         self.homeWindow = None
         self.signupWindow = None
+        self.accWindow = None
         self.btn_LogIn.clicked.connect(self.xu_ly_dang_nhap)
         self.btn_SignUpnow.clicked.connect(self.vao_trang_dang_ki)
-
 
 
         self.show_password_btn.setIcon(QIcon("D:/WorkSpace/Python/PTI06/SPK/IMG/eye-closed.png"))
         self.password_edit = self.txt_Password
         self.show_password_btn.clicked.connect(self.toggle_password_visibility)
-
-        toggle = AnimatedToggle(checked_color="#536DFE", pulse_checked_color="#C5CAE9")
-        toggle.toggled.connect(self.toggle_dark_light_mode)  # Gắn sự kiện
-        layout = QVBoxLayout()
-        layout.addWidget(toggle)
-        self.frame.setLayout(layout)
 
     def xu_ly_dang_nhap(self):
         txtUser = self.txt_Username.text().strip()
@@ -37,15 +30,15 @@ class Login(QMainWindow):
             
         for item in data["accounts"]:
             if item["username"] == txtUser and item["password"] == txtPass:
-                # ✅ Thông báo toast
                 self.toast = SimpleToast("Đăng Nhập Thành Công")
-
+                self.username = item["username"]
                 from Home import Home
                 if self.homeWindow is None:
-                    self.homeWindow = Home()
-
+                    self.homeWindow = Home(self.username)
                 self.homeWindow.show()
                 self.hide()
+                from ACc import Acc
+                self.accWindow = Acc(self.username)
                 return
 
         self.toast = SimpleToast("Sai tên đăng nhập hoặc mật khẩu")
@@ -72,35 +65,6 @@ class Login(QMainWindow):
             self.password_edit.setEchoMode(QLineEdit.Password)
             self.show_password_btn.setIcon(QIcon("D:/WorkSpace/Python/PTI06/SPK/IMG/eye-closed.png"))
     
-    def toggle_dark_light_mode(self, checked):
-        if checked:
-            # DARK MODE
-            self.setStyleSheet("""
-                QMainWindow {
-                    background-color: #3B3F4E;
-                    color: white;
-                }
-                QPushButton {
-                    padding:2px 2px;
-                    border: 1px solid #555;
-                }
-                
-                QLabel{
-                    color:white;            
-                }
-            """)
-
-        else:
-            # LIGHT MODE
-            self.setStyleSheet("""
-                QMainWindow {
-                    background-color: white;
-                    color: black;
-                }
-                QLineEdit, QPushButton {
-                    border: 1px solid #ccc;
-                }
-            """)
 
 class SimpleToast(QWidget):
     def __init__(self, message, duration=4000):

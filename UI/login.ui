@@ -62,33 +62,11 @@
            <widget class="QWidget" name="widget_14" native="true">
             <property name="maximumSize">
              <size>
-              <width>800</width>
+              <width>16777215</width>
               <height>16777215</height>
              </size>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6"/>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_11" native="true">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_7">
-             <item>
-              <widget class="QFrame" name="frame">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
            </widget>
           </item>
          </layout>

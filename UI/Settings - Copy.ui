@@ -30,8 +30,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:#d8e0ea;
-border-radius:24px;</string>
+          <string notr="true"/>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -96,9 +95,7 @@ border-radius:24px;</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color:#EEF3FB;
-border-radius:18px;
-</string>
+             <string notr="true"/>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
              <item>
@@ -110,23 +107,7 @@ border-radius:18px;
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QPushButton {
-    background-color: transparent;
-    color: #1a1a1a;
-    border-radius: 10px;
-    padding: 8px 16px;
-}
-
-QPushButton:hover {
-    background-color: #f5f5f5;
-    border: 1.5px solid #c0c0c0;
-}
-
-QPushButton:pressed {
-    background-color: #e0e0e0;
-    border: 1.5px solid #a0a0a0;
-}
-</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>List your app</string>
@@ -151,9 +132,7 @@ QPushButton:pressed {
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color:#EEF3FB;
-border-radius:18px;
-</string>
+             <string notr="true"/>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
@@ -165,23 +144,7 @@ border-radius:18px;
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QPushButton {
-    background-color: transparent;
-    color: #1a1a1a;
-    border-radius: 10px;
-    padding: 8px 16px;
-}
-
-QPushButton:hover {
-    background-color: #f5f5f5;
-    border: 1.5px solid #c0c0c0;
-}
-
-QPushButton:pressed {
-    background-color: #e0e0e0;
-    border: 1.5px solid #a0a0a0;
-}
-</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>Accounts</string>
@@ -200,9 +163,7 @@ QPushButton:pressed {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color:#EEF3FB;
-border-radius:18px;
-</string>
+             <string notr="true"/>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
@@ -214,14 +175,7 @@ border-radius:18px;
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QPushButton {
-    background-color: #f5f5f5;
-    color: #1a1a1a;
-    border-radius: 10px;
-    padding: 8px 16px;
-	border: 1.5px solid #c0c0c0;
-}
-</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>Settings</string>
@@ -240,9 +194,7 @@ border-radius:18px;
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color:#EEF3FB;
-border-radius:18px;
-</string>
+             <string notr="true"/>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_7">
              <item>
@@ -254,23 +206,7 @@ border-radius:18px;
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QPushButton {
-    background-color: transparent;
-    color: #1a1a1a;
-    border-radius: 10px;
-    padding: 8px 16px;
-}
-
-QPushButton:hover {
-    background-color: #f5f5f5;
-    border: 1.5px solid #c0c0c0;
-}
-
-QPushButton:pressed {
-    background-color: #e0e0e0;
-    border: 1.5px solid #a0a0a0;
-}
-</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>About this app</string>
@@ -321,8 +257,7 @@ QPushButton:pressed {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color:#DCEEFF;
-border-radius:12px;</string>
+             <string notr="true"/>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_15">
              <item>

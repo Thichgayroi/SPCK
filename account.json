@@ -2,7 +2,15 @@
     "accounts": [
         {
             "username": "1",
-            "password": "1"
+            "password": "1",
+            "darkmode": true,
+            "notification": true
+        },
+        {
+            "username": "2",
+            "password": "2",
+            "darkmode": true,
+            "notification": false
         }
     ]
 }

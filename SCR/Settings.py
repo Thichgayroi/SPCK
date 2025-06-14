@@ -26,7 +26,7 @@ class Setting(QMainWindow):
 
         self.toggle1 = AnimatedToggle(checked_color="#536DFE", pulse_checked_color="#C5CAE9")
         self.toggle1.setChecked(darkmode)
-        self.toggle1.toggled.connect(self.toggle_dark_light_mode)
+        self.toggle1.toggled.connect(self.apply_darkmode)
         layout1 = QVBoxLayout()
         layout1.addWidget(self.toggle1)
         self.frame1.setLayout(layout1)
@@ -39,7 +39,7 @@ class Setting(QMainWindow):
         self.frame2.setLayout(layout2)
 
         # Áp dụng darkmode ngay khi vào
-        self.toggle_dark_light_mode(darkmode)
+        self.apply_darkmode(darkmode)
 
     def load_user_settings(self, username):
         with open("d:/WorkSpace/Python/PTI06/SPK/account.json", "r", encoding="utf-8") as file:
@@ -77,7 +77,7 @@ class Setting(QMainWindow):
         else:
             self.toast = SimpleToast("Notifications: ON", duration=2000)
 
-    def toggle_dark_light_mode(self, checked):
+    def apply_darkmode(self, checked):
         if self.enable_toast:
             if checked:
                 self.toast = SimpleToast("Dark Mode: ON", duration=2000)

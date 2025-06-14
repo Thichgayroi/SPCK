@@ -5,11 +5,12 @@ from PyQt5.QtCore import Qt, QTimer
 from qtwidgets import AnimatedToggle
 
 class Setting(QMainWindow):
-    def __init__(self, username=None):
+    def __init__(self, username=None,password=None):
         super().__init__()
-        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/Settings - Copy.ui", self)
+        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/Settings.ui", self)
         self.setWindowTitle("Home")
         self.username = username
+        self.password = password
         self.btn_ATA.clicked.connect(self.vao_ATA)
         self.btn_LYA.clicked.connect(self.vao_LYA)
         self.btn_accounts.clicked.connect(self.vao_ACC)
@@ -51,21 +52,21 @@ class Setting(QMainWindow):
     def vao_ATA(self):
         from ATa import Ata
         if(self.ataWindow) == None:
-            self.ataWindow = Ata(self.username)
+            self.ataWindow = Ata(self.username,self.password)
         self.ataWindow.show()
         self.hide()
 
     def vao_LYA(self):
         from LYa import Lya
         if(self.lyaWindow) == None:
-            self.lyaWindow = Lya(self.username)
+            self.lyaWindow = Lya(self.username,self.password)
         self.lyaWindow.show()
         self.hide()
     
     def vao_ACC(self):
         from ACc import Acc
         if(self.accWindow) == None:
-            self.accWindow = Acc(self.username)
+            self.accWindow = Acc(self.username,self.password)
         self.accWindow.show()
         self.hide()
 
@@ -84,12 +85,18 @@ class Setting(QMainWindow):
                 self.toast = SimpleToast("Dark Mode: OFF", duration=2000)
 
         if checked:
+                # Xóa styleSheet cũ trước khi set mới
+            for w in [self.widget_2, self.widget_5, self.widget_6, self.widget_11, self.widget_12,self.widget_8]:
+                w.setStyleSheet("")
+            for btn in [self.btn_LYA, self.btn_accounts, self.btn_settings, self.btn_ATA,self.lbl_title,self.comboBox]:
+                btn.setStyleSheet("")
+            self.setStyleSheet("")
             self.widget_2.setStyleSheet("""
                 background-color: #2b2b2b;
                 color: white;
                 border-radius: 24px;
                 """)
-            self.widget_7.setStyleSheet("""
+            self.lbl_title.setStyleSheet("""
                 background-color: #2b2b2b;
                 color: white;
                 border-radius: 12px;
@@ -108,6 +115,10 @@ class Setting(QMainWindow):
                 """)
             self.widget_6.setStyleSheet("""
                 background-color: #3a3a3a;
+                border-radius: 12px;
+                """)
+            self.widget_8.setStyleSheet("""
+                background-color: #2b2b2b;
                 border-radius: 12px;
                 """)
             self.btn_LYA.setStyleSheet("""
@@ -174,6 +185,19 @@ class Setting(QMainWindow):
                     border: 1.5px solid #a0a0a0;
                 }
 
+                """)
+            self.comboBox.setStyleSheet("""
+                QComboBox {
+                    background-color: #2e2e2e;
+                    color: #ffffff;
+                    border: 1px solid #555555;
+                    border-radius: 5px;
+                    padding: 5px;
+                }
+
+                QComboBox:hover {
+                    border: 1px solid #888888;
+                }
                 """)
             self.setStyleSheet("""
                 QMainWindow {
@@ -207,7 +231,7 @@ class Setting(QMainWindow):
                 color: black;
                 border-radius: 24px;
                 """)
-            self.widget_7.setStyleSheet("""
+            self.lbl_title.setStyleSheet("""
                 background-color: #DCEEFF;
                 color: black;
                 border-radius: 12px;
@@ -227,6 +251,10 @@ class Setting(QMainWindow):
             self.widget_6.setStyleSheet("""
                 background-color: #EEF3FB;
                 border-radius: 18px;
+                """)
+            self.widget_8.setStyleSheet("""
+                background-color: #EDF4FC;
+                border-radius: 12px;
                 """)
             self.btn_LYA.setStyleSheet("""
                 QPushButton {
@@ -298,57 +326,6 @@ class Setting(QMainWindow):
                 QLabel {
                     color: #222222;
                 }
-
-                QPushButton {
-                    background-color: #f5f5f5;
-                    color: #222222;
-                    padding: 6px 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 6px;
-                }
-
-                QPushButton:hover {
-                    background-color: #e0e0e0;
-                }
-
-                QComboBox {
-                    background-color: #ffffff;
-                    color: #222222;
-                    border: 1px solid #ccc;
-                    padding: 4px;
-                }
-
-                QComboBox QAbstractItemView {
-                    background-color: #ffffff;
-                    color: #222222;
-                    selection-background-color: #ddd;
-                }
-
-                QLineEdit {
-                    background-color: #ffffff;
-                    color: #222222;
-                    border: 1px solid #ccc;
-                    padding: 4px;
-                }
-
-                QCheckBox, QRadioButton {
-                    color: #222222;
-                }
-
-                QGroupBox {
-                    border: 1px solid #ccc;
-                    margin-top: 10px;
-                }
-                #appTitle {
-                    color: #3b3b3b;
-                    font-weight: bold;
-                }
-
-                #settingsTitle {
-                    color: #222;
-                    font-size: 22px;
-                }
-
             """)
 
 

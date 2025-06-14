@@ -3,12 +3,13 @@ from PyQt5 import uic
 import json
 
 class Ata(QMainWindow):
-    def __init__(self, username=None):
+    def __init__(self, username=None,password=None):
         super().__init__()
-        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/ATA - Copy.ui", self)
+        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/ATA.ui", self)
         self.setWindowTitle("Home")
         self.username = username
-
+        self.password = password
+        
         self.btn_LYA.clicked.connect(self.vao_LYA)
         self.btn_accounts.clicked.connect(self.vao_ACC)
         self.btn_settings.clicked.connect(self.vao_SETTING)
@@ -31,7 +32,14 @@ class Ata(QMainWindow):
                         break
             except Exception as e:
                 print("Lỗi đọc darkmode:", e)
+            # Xóa styleSheet cũ trước khi set mới
+
         if darkmode:
+            for w in [self.widget_2, self.widget_5, self.widget_6, self.widget_11, self.widget_12]:
+                w.setStyleSheet("")
+            for btn in [self.btn_LYA, self.btn_accounts, self.btn_settings, self.btn_ATA,self.lbl_ATA]:
+                btn.setStyleSheet("")
+            self.setStyleSheet("")
             # StyleSheet darkmode (bạn có thể copy từ Settings)
             self.widget_2.setStyleSheet("""
                 background-color: #2b2b2b;
@@ -52,6 +60,10 @@ class Ata(QMainWindow):
                 """)
             self.widget_6.setStyleSheet("""
                 background-color: #3a3a3a;
+                border-radius: 12px;
+                """)
+            self.widget_8.setStyleSheet("""
+                background-color: #2b2b2b;
                 border-radius: 12px;
                 """)
             self.btn_LYA.setStyleSheet("""
@@ -94,14 +106,6 @@ class Ata(QMainWindow):
                 """)
             self.btn_settings.setStyleSheet("""
                 QPushButton {
-                    background-color: #505050;
-                    color: white;
-                    border-radius: 10px;
-                    padding: 8px 16px;
-                }
-                """)
-            self.btn_ATA.setStyleSheet("""
-                QPushButton {
                     background-color: transparent;
                     color: white;
                     border-radius: 10px;
@@ -117,8 +121,20 @@ class Ata(QMainWindow):
                     background-color: #2f2f2f;
                     border: 1.5px solid #a0a0a0;
                 }
-
                 """)
+            self.btn_ATA.setStyleSheet("""
+                QPushButton {
+                    background-color: #505050;
+                    color: white;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
+                """)
+            self.lbl_ATA.setStyleSheet("""
+                    background-color: #2c2c2c;
+                    color: white;
+                    border-radius: 12px;
+                """)                   
             self.setStyleSheet("""
                 QMainWindow {
                     background-color: #1e1e1e;
@@ -168,20 +184,20 @@ class Ata(QMainWindow):
     def vao_ACC(self):
         from ACc import Acc
         if self.accWindow is None:
-            self.accWindow = Acc(self.username)
+            self.accWindow = Acc(self.username,self.password)
         self.accWindow.show()
         self.hide()
 
     def vao_SETTING(self):
         from Settings import Setting
         if self.settingWindow is None:
-            self.settingWindow = Setting(self.username)
+            self.settingWindow = Setting(self.username,self.password)
         self.settingWindow.show()
         self.hide()
 
     def vao_LYA(self):
         from LYa import Lya
         if self.lyaWindow is None:
-            self.lyaWindow = Lya(self.username)
+            self.lyaWindow = Lya(self.username,self.password)
         self.lyaWindow.show()
         self.hide()

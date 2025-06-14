@@ -1,18 +1,26 @@
-from PyQt5.QtWidgets import QMainWindow, QMessageBox  # Import từ QtWidgets
-from PyQt5 import uic #uic để tạo giao diện cửa sổ từ file thiết kế (.ui)
-import json  # Import để làm việc với file JSON
+from PyQt5.QtWidgets import QMainWindow, QMessageBox,QLineEdit
+from PyQt5 import uic
+import json
+from PyQt5.QtGui import QIcon
 class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ QMainWindow
-    def __init__(self,username=None): #Hàm init tự động chạy khi khởi tạo đối tượng
+    def __init__(self,username=None,password=None): #Hàm init tự động chạy khi khởi tạo đối tượng
         super().__init__() #super giúp gọi hàm init của QMainWindow
-        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/testss.ui", self) #Load giao diện từ file
+        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/Accounts.ui", self) #Load giao diện từ file
         self.setWindowTitle("Home")
         self.username = username  # Lưu username
+        self.password = password  # Lưu password
         if self.username:
             self.cant_change.setText(self.username)  # Gán vào QLineEdit
+        if self.password:
+            self.cant_change2.setText(self.password)  # Gán vào QLineEdit
         self.btn_ATA.clicked.connect(self.vao_ATA)
         self.btn_LYA.clicked.connect(self.vao_LYA)
         self.btn_settings.clicked.connect(self.vao_SETTING)
         self.btn_logout.clicked.connect(self.dang_xuat)
+        self.show_password_btn.setIcon(QIcon("D:/WorkSpace/Python/PTI06/SPK/IMG/eye-closed.png"))
+        self.password_edit = self.cant_change2
+        self.show_password_btn.clicked.connect(self.toggle_password_visibility)
+
         self.ataWindow = None
         self.lyaWindow = None
         self.settingWindow = None
@@ -31,8 +39,15 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                         break
             except Exception as e:
                 print("Lỗi đọc darkmode:", e)
+
+
         if darkmode:
-            # StyleSheet darkmode (bạn có thể copy từ Settings)
+            for w in [self.widget_2, self.widget_5, self.widget_6, self.widget_11, self.widget_12,self.widget_8]:
+                w.setStyleSheet("")
+            for btn in [self.btn_LYA, self.btn_accounts, self.btn_settings, self.btn_ATA,self.lbl_title]:
+                btn.setStyleSheet("")
+            self.setStyleSheet("")
+
             self.widget_2.setStyleSheet("""
                 background-color: #2b2b2b;
                 color: white;
@@ -52,6 +67,10 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                 """)
             self.widget_6.setStyleSheet("""
                 background-color: #3a3a3a;
+                border-radius: 12px;
+                """)
+            self.widget_8.setStyleSheet("""
+                background-color: #2b2b2b;
                 border-radius: 12px;
                 """)
             self.btn_LYA.setStyleSheet("""
@@ -75,6 +94,14 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                 """)
             self.btn_accounts.setStyleSheet("""
                 QPushButton {
+                    background-color: #505050;
+                    color: white;
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                }
+                """)
+            self.btn_settings.setStyleSheet("""
+                QPushButton {
                     background-color: transparent;
                     color: white;
                     border-radius: 10px;
@@ -89,15 +116,6 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                 QPushButton:pressed {
                     background-color: #2f2f2f;
                     border: 1.5px solid #a0a0a0;
-                }
-
-                """)
-            self.btn_settings.setStyleSheet("""
-                QPushButton {
-                    background-color: #505050;
-                    color: white;
-                    border-radius: 10px;
-                    padding: 8px 16px;
                 }
                 """)
             self.btn_ATA.setStyleSheet("""
@@ -119,6 +137,11 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                 }
 
                 """)
+            self.lbl_title.setStyleSheet("""
+                    background-color: #2c2c2c;
+                    color: white;
+                    border-radius: 12px;
+            """)
             self.setStyleSheet("""
                 QMainWindow {
                     background-color: #1e1e1e;
@@ -168,21 +191,21 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
     def vao_ATA(self):
         from ATa import Ata
         if(self.ataWindow) == None:
-            self.ataWindow = Ata(self.username)
+            self.ataWindow = Ata(self.username,self.password)
         self.ataWindow.show()
         self.hide()
 
     def vao_LYA(self):
         from LYa import Lya
         if(self.lyaWindow) == None:
-            self.lyaWindow = Lya(self.username)
+            self.lyaWindow = Lya(self.username,self.password)
         self.lyaWindow.show()
         self.hide()
 
     def vao_SETTING(self):
         from Settings import Setting
         if(self.settingWindow) == None:
-            self.settingWindow = Setting(self.username)
+            self.settingWindow = Setting(self.username,self.password)
         self.settingWindow.show()
         self.hide()
 
@@ -214,4 +237,20 @@ class Acc(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
             self.thongbao("LogOut","Are you sure?")
             return
     
-    
+
+    def toggle_password_visibility(self):
+        if self.show_password_btn.isChecked():
+            # Hiện hộp thoại nhập mật khẩu xác thực
+            from PyQt5.QtWidgets import QInputDialog
+            text, ok = QInputDialog.getText(self, "Xác thực", "Nhập mật khẩu để xem:", QLineEdit.Password)
+            if ok and text == self.password:
+                self.password_edit.setEchoMode(QLineEdit.Normal)
+                self.show_password_btn.setIcon(QIcon("D:/WorkSpace/Python/PTI06/SPK/IMG/eye-open.png"))
+            else:
+                # Nếu sai mật khẩu hoặc bấm Cancel thì không cho xem, trả lại trạng thái cũ
+                self.show_password_btn.setChecked(False)
+                self.password_edit.setEchoMode(QLineEdit.Password)
+                self.show_password_btn.setIcon(QIcon("D:/WorkSpace/Python/PTI06/SPK/IMG/eye-closed.png"))
+        else:
+            self.password_edit.setEchoMode(QLineEdit.Password)
+            self.show_password_btn.setIcon(QIcon("D:/WorkSpace/Python/PTI06/SPK/IMG/eye-closed.png"))

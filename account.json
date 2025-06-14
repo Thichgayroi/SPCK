@@ -1,16 +1,22 @@
 {
     "accounts": [
         {
-            "username": "1",
-            "password": "1",
+            "username": "admin",
+            "password": "123456",
             "darkmode": true,
             "notification": true
         },
         {
-            "username": "2",
-            "password": "2",
-            "darkmode": true,
-            "notification": false
+            "username": "12",
+            "password": "1234567",
+            "darkmode": false,
+            "notification": true
+        },
+        {
+            "username": "123",
+            "password": "123456",
+            "darkmode": false,
+            "notification": true
         }
     ]
 }

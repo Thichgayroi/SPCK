@@ -25,7 +25,7 @@
         <widget class="QWidget" name="widget_2" native="true">
          <property name="maximumSize">
           <size>
-           <width>16777215</width>
+           <width>247</width>
            <height>16777215</height>
           </size>
          </property>
@@ -75,7 +75,7 @@ border-radius:24px;</string>
               <widget class="QLabel" name="lbl_name">
                <property name="font">
                 <font>
-                 <family>JetBrains Mono NL</family>
+                 <family>JetBrains Mono</family>
                  <pointsize>16</pointsize>
                 </font>
                </property>
@@ -322,101 +322,29 @@ QPushButton:pressed {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QWidget" name="widget_7" native="true">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>125</height>
-             </size>
-            </property>
+           <widget class="QWidget" name="widget_8" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
-              <widget class="QWidget" name="widget_9" native="true">
+              <widget class="QLabel" name="label_2">
                <property name="maximumSize">
                 <size>
-                 <width>700</width>
-                 <height>75</height>
+                 <width>512</width>
+                 <height>512</height>
                 </size>
                </property>
-               <property name="styleSheet">
-                <string notr="true">
-border-radius: 16px;</string>
+               <property name="text">
+                <string/>
                </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_6">
-                <item>
-                 <widget class="QLabel" name="label_2">
-                  <property name="maximumSize">
-                   <size>
-                    <width>36</width>
-                    <height>36</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="pixmap">
-                   <pixmap>../IMG/search.png</pixmap>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="lineEdit">
-                  <property name="maximumSize">
-                   <size>
-                    <width>500</width>
-                    <height>50</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>JetBrains Mono</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/* Đặt objectName cho QLineEdit là &quot;searchBar&quot; */
-QLineEdit {
-    /* nền nhẹ nhàng */
-    background-color: white;
-    /* bo tròn full height (nếu height=32px thì radius=16px) */
-    border-radius: 16px;
-	padding: 3px 6px 3px 6px;
-}
-
-/* Placeholder màu xám nhạt */
-QLineEdit#searchBar::placeholder {
-    color: #A0A0A0;
-}
-
-/* Khi focus thì nền trắng sáng hơn, có viền nhẹ */
-QLineEdit#searchBar:focus {
-    background-color: #FFFFFF;
-    border: 1px solid #D0D0D0;
-}
-
-/* Nếu cần disabled state */
-QLineEdit#searchBar:disabled {
-    background-color: #ECECEC;
-    color: #A0A0A0;
-}
-</string>
-                  </property>
-                  <property name="placeholderText">
-                   <string>Search</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <property name="pixmap">
+                <pixmap>../IMG/f79d56bb-0508-48f8-a8ea-91bc16efa68b.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
             </layout>
            </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_8" native="true"/>
           </item>
          </layout>
         </widget>

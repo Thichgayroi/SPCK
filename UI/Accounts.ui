@@ -157,7 +157,7 @@ border-radius:18px;
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="btn_accounts">
                <property name="font">
                 <font>
                  <family>JetBrains Mono</family>
@@ -322,7 +322,7 @@ QPushButton:pressed {
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
-              <widget class="QLabel" name="label_2">
+              <widget class="QLabel" name="lbl_title">
                <property name="font">
                 <font>
                  <family>JetBrains Mono</family>
@@ -331,7 +331,7 @@ QPushButton:pressed {
                </property>
                <property name="styleSheet">
                 <string notr="true">background-color:#DCEEFF;
-border-radius:12px;s</string>
+border-radius:12px;</string>
                </property>
                <property name="text">
                 <string>Information</string>
@@ -355,7 +355,7 @@ border-radius:12px;</string>
               <widget class="QWidget" name="widget_16" native="true">
                <property name="maximumSize">
                 <size>
-                 <width>160</width>
+                 <width>16777215</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -450,11 +450,14 @@ QPushButton:pressed {
               <widget class="QWidget" name="widget_9" native="true">
                <property name="maximumSize">
                 <size>
-                 <width>500</width>
+                 <width>16777215</width>
                  <height>16777215</height>
                 </size>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_6">
+               <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,0,0,0">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
                 <item>
                  <widget class="QWidget" name="widget_18" native="true">
                   <property name="maximumSize">
@@ -465,7 +468,13 @@ QPushButton:pressed {
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_5">
                    <item>
-                    <widget class="QLabel" name="label_4">
+                    <widget class="QLabel" name="lbl_username">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
                      <property name="font">
                       <font>
                        <family>JetBrains Mono</family>
@@ -478,15 +487,18 @@ QPushButton:pressed {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="cant_change">
-                     <property name="maximumSize">
-                      <size>
-                       <width>250</width>
-                       <height>16777215</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLineEdit {
+                    <widget class="QWidget" name="widget_23" native="true">
+                     <layout class="QHBoxLayout" name="horizontalLayout_13">
+                      <item>
+                       <widget class="QLineEdit" name="cant_change">
+                        <property name="maximumSize">
+                         <size>
+                          <width>250</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QLineEdit {
     border: 1px solid #c0c0c0;
     border-radius: 4px;
     padding: 6px;
@@ -501,10 +513,38 @@ QLineEdit:focus {
     outline: none;
 }
 </string>
-                     </property>
-                     <property name="readOnly">
-                      <bool>true</bool>
-                     </property>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="widget_28" native="true"/>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="widget_27" native="true"/>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="widget_26" native="true"/>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="widget_25" native="true"/>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_2">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
                     </widget>
                    </item>
                   </layout>
@@ -515,145 +555,125 @@ QLineEdit:focus {
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
-                    <height>75</height>
+                    <height>16777215</height>
                    </size>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_7">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
                    <item>
-                    <widget class="QPushButton" name="btn_change_pass">
+                    <widget class="QLabel" name="label_2">
                      <property name="maximumSize">
                       <size>
-                       <width>160</width>
-                       <height>40</height>
+                       <width>16777215</width>
+                       <height>16777215</height>
                       </size>
                      </property>
                      <property name="font">
                       <font>
                        <family>JetBrains Mono</family>
-                       <pointsize>8</pointsize>
+                       <pointsize>9</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QPushButton {
-    background-color: white;
-    color: #007bff;
-    border: 2px solid #007bff;
-    border-radius: 5px;
-    padding: 5px 15px;
-}
-
-QPushButton:hover {
-    background-color: #e6f2ff;
-}
-
-QPushButton:pressed {
-    background-color: #cce0ff;
-    border: 2px solid #0056b3;
-}
-</string>
-                     </property>
                      <property name="text">
-                      <string>Change Password</string>
+                      <string>Password</string>
                      </property>
                     </widget>
                    </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QWidget" name="widget_22" native="true">
-                  <layout class="QHBoxLayout" name="horizontalLayout_13">
                    <item>
-                    <widget class="QPushButton" name="btn_del_acc">
-                     <property name="maximumSize">
-                      <size>
-                       <width>250</width>
-                       <height>40</height>
-                      </size>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <weight>75</weight>
-                       <bold>true</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QPushButton {
-    background-color: #ffcccc;       /* nền đỏ nhạt */
-    color: #b30000;                  /* chữ đỏ đậm */
-    border: 2px solid #b30000;       /* viền đỏ đậm */
+                    <widget class="QWidget" name="widget_22" native="true">
+                     <layout class="QHBoxLayout" name="horizontalLayout_14">
+                      <item>
+                       <widget class="QLineEdit" name="cant_change2">
+                        <property name="maximumSize">
+                         <size>
+                          <width>250</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QLineEdit {
+    border: 1px solid #c0c0c0;
+    border-radius: 4px;
+    padding: 6px;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #0078d7; /* Xanh dương như nút &quot;Change Password&quot; */
+    background-color: #f5faff;
+    outline: none;
+}
+</string>
+                        </property>
+                        <property name="echoMode">
+                         <enum>QLineEdit::Password</enum>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="show_password_btn">
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {
+    border: 2px solid #0078D7;
     border-radius: 6px;
+    background-color: white;
     padding: 6px 12px;
+    color: #0078D7;
     font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #ff9999;       /* đỏ nhạt hơn khi hover */
-}
-
-QPushButton:pressed {
-    background-color: #e60000;       /* đỏ đậm hơn khi nhấn */
-    color: white;
-}
-</string>
-                     </property>
-                     <property name="text">
-                      <string>Delete Account</string>
-                     </property>
+	box-shadow: 0px 4px 10px rgba(0, 120, 215, 0.2);
+}</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="checkable">
+                         <bool>true</bool>
+                        </property>
+                        <property name="checked">
+                         <bool>false</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
                     </widget>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="widget_23" native="true"/>
                    </item>
                   </layout>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QWidget" name="widget_24" native="true">
-                  <layout class="QHBoxLayout" name="horizontalLayout_14">
-                   <item>
-                    <widget class="QWidget" name="widget_27" native="true"/>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="widget_26" native="true"/>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="widget_25" native="true"/>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="btn_apply">
-                     <property name="font">
-                      <font>
-                       <family>JetBrains Mono</family>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QPushButton {
-    background-color: #f0f0f0;
-    border: 1px solid #bbb;
-    border-radius: 5px;
-    padding: 5px 15px;
-    color: #333;
-}
-
-QPushButton:hover {
-    background-color: #e0e0e0;
-    border: 1px solid #999;
-}
-
-QPushButton:pressed {
-    background-color: #d0d0d0;
-    border: 1px solid #666;
-}
-</string>
-                     </property>
-                     <property name="text">
-                      <string>Apply</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
+                 <widget class="QWidget" name="widget_21" native="true"/>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_24" native="true"/>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_29" native="true"/>
                 </item>
                </layout>
               </widget>

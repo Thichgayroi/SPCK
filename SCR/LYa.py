@@ -1,16 +1,16 @@
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QMainWindow, QVBoxLayout, QPushButton, QListWidget, QFileDialog, QMessageBox, QInputDialog,QListWidgetItem
+    QMainWindow,QFileDialog, QMessageBox, QInputDialog,QListWidgetItem
 )
-import sys
 import os
+import json
 from PyQt5.QtGui import QFont, QColor
 from PyQt5.QtCore import Qt
 from PyQt5 import uic #uic để tạo giao diện cửa sổ từ file thiết kế (.ui)
-import json  # Import để làm việc với file JSON
+
 class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ QMainWindow
-    def __init__(self, username=None): #Hàm init tự động chạy khi khởi tạo đối tượng
+    def __init__(self, username=None,password=None): #Hàm init tự động chạy khi khởi tạo đối tượng
         super().__init__() #super giúp gọi hàm init của QMainWindow
-        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/LYA - Copy.ui", self) #Load giao diện từ file
+        uic.loadUi("D:/Workspace/Python/PTI06/SPK/UI/LYA.ui", self) #Load giao diện từ file
         self.setWindowTitle("Home")
         self.add_button.clicked.connect(self.add_app)
         self.delete_button.clicked.connect(self.delete_app)
@@ -20,6 +20,7 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
         self.current_group_index = None
 
         self.username = username
+        self.password = password
         self.btn_ATA.clicked.connect(self.vao_ATA)
         self.btn_accounts.clicked.connect(self.vao_ACC)
         self.btn_settings.clicked.connect(self.vao_SETTING)
@@ -29,6 +30,7 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
         self.settingWindow = None
 
         self.apply_darkmode()
+        self.load_app_list()  # Thêm dòng này sau khi setup xong list_widget
 
     def apply_darkmode(self):
         darkmode = False
@@ -42,8 +44,17 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                         break
             except Exception as e:
                 print("Lỗi đọc darkmode:", e)
+
+
+
+        # Dark mode
         if darkmode:
-            # StyleSheet darkmode (bạn có thể copy từ Settings)
+
+            for w in [self.widget_2, self.widget_5, self.widget_6, self.widget_11, self.widget_12]:
+                w.setStyleSheet("")
+            for btn in [self.btn_LYA, self.btn_accounts, self.btn_settings, self.btn_ATA]:
+                btn.setStyleSheet("")
+            self.setStyleSheet("")
             self.widget_2.setStyleSheet("""
                 background-color: #2b2b2b;
                 color: white;
@@ -67,22 +78,11 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                 """)
             self.btn_LYA.setStyleSheet("""
                 QPushButton {
-                    background-color: transparent;
+                    background-color: #505050;
                     color: white;
                     border-radius: 10px;
                     padding: 8px 16px;
                 }
-
-                QPushButton:hover {
-                    background-color: #505050;
-                    border: 1.5px solid #c0c0c0;
-                }
-
-                QPushButton:pressed {
-                    background-color: #2f2f2f;
-                    border: 1.5px solid #a0a0a0;
-                }
-
                 """)
             self.btn_accounts.setStyleSheet("""
                 QPushButton {
@@ -105,10 +105,20 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                 """)
             self.btn_settings.setStyleSheet("""
                 QPushButton {
-                    background-color: #505050;
+                    background-color: transparent;
                     color: white;
                     border-radius: 10px;
                     padding: 8px 16px;
+                }
+
+                QPushButton:hover {
+                    background-color: #505050;
+                    border: 1.5px solid #c0c0c0;
+                }
+
+                QPushButton:pressed {
+                    background-color: #2f2f2f;
+                    border: 1.5px solid #a0a0a0;
                 }
                 """)
             self.btn_ATA.setStyleSheet("""
@@ -155,8 +165,9 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                     selection-background-color: #444;
                 }
             """)
+
+        # Light mode
         else:
-            # StyleSheet lightmode (bạn có thể copy từ Settings)
             self.setStyleSheet("""
                 QMainWindow, QWidget {
                     background-color: #f5f5f5;
@@ -176,6 +187,31 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
                 }
             """)
 
+
+    def save_app_list(self):
+        apps = []
+        for i in range(self.list_widget.count()):
+            apps.append(self.list_widget.item(i).text())
+        save_dir = "d:/WorkSpace/Python/PTI06/SPK/user_apps"
+        os.makedirs(save_dir, exist_ok=True)
+        save_path = os.path.join(save_dir, f"{self.username}_apps.json")
+        with open(save_path, "w", encoding="utf-8") as f:
+            json.dump(apps, f, ensure_ascii=False, indent=4)
+
+    def load_app_list(self):
+        load_path = f"d:/WorkSpace/Python/PTI06/SPK/user_apps/{self.username}_apps.json"
+        if os.path.exists(load_path):
+            with open(load_path, "r", encoding="utf-8") as f:
+                apps = json.load(f)
+                self.list_widget.clear()
+                for text in apps:
+                    item = QListWidgetItem(text)
+                    # Nếu là group thì căn giữa, bôi đậm, nền xám
+                    if text.strip().startswith("---"):
+                        item.setFont(QFont("Arial", weight=QFont.Bold))
+                        item.setBackground(QColor("lightgray"))
+                        item.setTextAlignment(Qt.AlignCenter)
+                    self.list_widget.addItem(item)
 
     def add_app(self):
         file_dialog = QFileDialog()
@@ -199,7 +235,7 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
 
             # Không có group thì thêm vào cuối
             self.list_widget.addItem(item)
-
+        self.save_app_list()
 
     def delete_app(self):
         selected_items = self.list_widget.selectedItems()
@@ -211,6 +247,7 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
             self.list_widget.takeItem(row)
             if row == self.current_group_index:
                 self.current_group_index = None
+        self.save_app_list()
 
     def open_app(self):
         selected_items = self.list_widget.selectedItems()
@@ -237,6 +274,7 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
             self.list_widget.addItem(item)
             self.current_group_index = self.list_widget.count() - 1
             self.list_widget.setCurrentRow(self.current_group_index)
+        self.save_app_list()
 
     def update_indentation(self):
         current_group = None
@@ -258,20 +296,21 @@ class Lya(QMainWindow): #Kế thừa các thuộc tính và phương thức từ
     def vao_ATA(self):
         from ATa import Ata
         if(self.ataWindow) == None:
-            self.ataWindow = Ata(self.username)
+            self.ataWindow = Ata(self.username, self.password)
         self.ataWindow.show()
         self.hide()
 
     def vao_ACC(self):
         from ACc import Acc
         if(self.accWindow) == None:
-            self.accWindow = Acc(self.username)
+            self.accWindow = Acc(self.username,self.password)
         self.accWindow.show()
         self.hide()
 
     def vao_SETTING(self):
         from Settings import Setting
         if(self.settingWindow) == None:
-            self.settingWindow = Setting(self.username)
+            self.settingWindow = Setting(self.username, self.password)
         self.settingWindow.show()
         self.hide()
+

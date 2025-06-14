@@ -25,20 +25,21 @@ class Login(QMainWindow):
         txtUser = self.txt_Username.text().strip()
         txtPass = self.txt_Password.text().strip()
         
-        with open("account.json", "r") as file:
+        with open("d:/WorkSpace/Python/PTI06/SPK/account.json", "r") as file:
             data = json.load(file)
             
         for item in data["accounts"]:
             if item["username"] == txtUser and item["password"] == txtPass:
                 self.toast = SimpleToast("Đăng Nhập Thành Công")
                 self.username = item["username"]
+                self.password = item["password"]
                 from Home import Home
-                if self.homeWindow is None:
-                    self.homeWindow = Home(self.username)
+                if self.homeWindow == None:
+                    self.homeWindow = Home(self.username,self.password)
                 self.homeWindow.show()
                 self.hide()
                 from ACc import Acc
-                self.accWindow = Acc(self.username)
+                self.accWindow = Acc(self.username,self.password)
                 return
 
         self.toast = SimpleToast("Sai tên đăng nhập hoặc mật khẩu")
@@ -53,8 +54,8 @@ class Login(QMainWindow):
         self.signupWindow.show()
         self.hide()
 
-    def thongBao(self, TieuDe, NoiDung):
-        self.toast = SimpleToast(f"{TieuDe}: {NoiDung}")
+    def thongBao(self, NoiDung):
+        self.toast = SimpleToast(f"{NoiDung}")
 
 
     def toggle_password_visibility(self):

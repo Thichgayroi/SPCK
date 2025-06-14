@@ -321,6 +321,19 @@ class Setting(QMainWindow):
                     border: 1.5px solid #a0a0a0;
                 }
                 """)
+            self.comboBox.setStyleSheet("""
+                QComboBox {
+                    background-color: #ffffff;
+                    color: #000000;
+                    padding: 5px;
+                    border: 1px solid #cccccc;
+                    border-radius: 5px;
+                }
+
+                QComboBox:hover {
+                    border: 1px solid #888888;
+                }
+                """)
             self.setStyleSheet("""
 
                 QLabel {

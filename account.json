@@ -4,19 +4,7 @@
             "username": "admin",
             "password": "123456",
             "darkmode": true,
-            "notification": true
-        },
-        {
-            "username": "12",
-            "password": "1234567",
-            "darkmode": false,
-            "notification": true
-        },
-        {
-            "username": "123",
-            "password": "123456",
-            "darkmode": false,
-            "notification": true
+            "notification": false
         }
     ]
 }
